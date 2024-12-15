@@ -34,8 +34,8 @@ fun Screen() {
                     .fillMaxSize()
                     .background(MaterialTheme.colorScheme.surface)
             ) {
-                val fontSize = (size.width / 50).toSp()
-                val ratio = min(size.width / 50, size.height / 50)
+                val fontSize = (size.width / width).toSp()
+                val ratio = min(size.width / width, size.height / height)
                 state.robot.let { (x, y) ->
                     drawText(
                         textMeasurer = textMeasurer,

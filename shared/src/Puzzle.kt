@@ -3,32 +3,34 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+const val width = 50
+const val height = 50
+
 private val input = buildString {
-    repeat(50) {
+    repeat(width) {
         append('#')
     }
     append('\n')
 
-    repeat(48 ){
+    repeat(height - 2 ){
         append('#')
         val chars = listOf('#', 'O', 'O', '.', '.', '.', '.', '.', '.')
-        repeat(48) {
+        repeat(width - 2) {
             append(chars.random())
         }
         append('#')
         append('\n')
     }
 
-    repeat(50) {
+    repeat(width) {
         append('#')
     }
 }
 
 fun pushBoxes(): Flow<State> {
-    val w = input.indexOf('\n')
     val map = input.trim()
         .replace("\n", "")
-        .mapIndexed { index, c -> (index % w to index / w) to c }
+        .mapIndexed { index, c -> (index % width to index / width) to c }
         .toMutableStateMap()
 
     fun canPush(point: Pair<Int, Int>, direction: Char): Boolean = when (map[point]) {
@@ -51,7 +53,7 @@ fun pushBoxes(): Flow<State> {
 
     val directions = setOf('>', '<', '^', 'v')
     return flow {
-        var robot = (0 until 50).random() to (0 until 50).random()
+        var robot = (0 until width).random() to (0 until height).random()
         val state = State(robot, map.filterValues { it == 'O' }.keys, map.filterValues { it == '#' }.keys)
 
         while (true) {
