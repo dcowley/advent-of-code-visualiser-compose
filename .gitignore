@@ -1,5 +1,7 @@
 .idea
 .kotlin/
+.DS_Store
+
 build
 src/**/*.txt
 local.properties
