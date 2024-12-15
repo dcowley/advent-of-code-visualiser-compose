@@ -22,7 +22,7 @@ fun Screen() {
     val textMeasurer = rememberTextMeasurer()
 
     val stateFlow = pushBoxes()
-    val state by stateFlow.collectAsState(State.INITIAL)
+    val state by stateFlow.collectAsState(State())
 
     MaterialTheme {
         Box(

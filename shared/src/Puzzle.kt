@@ -83,11 +83,7 @@ private fun Pair<Int, Int>.move(direction: Char) = let { (x, y) ->
 }
 
 data class State(
-    val robot: Pair<Int, Int>,
-    val boxes: Set<Pair<Int, Int>>,
-    val walls: Set<Pair<Int, Int>>
-) {
-    companion object {
-        val INITIAL = State(0 to 0, emptySet(), emptySet())
-    }
-}
+    val robot: Pair<Int, Int> = 0 to 0,
+    val boxes: Set<Pair<Int, Int>> = emptySet(),
+    val walls: Set<Pair<Int, Int>> = emptySet()
+)
